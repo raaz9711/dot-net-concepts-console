@@ -51,3 +51,49 @@ Console.WriteLine(getPi());
 Func<int ,int,int> Sum = (a,b) => a + b;
 
 var s = Sum(5,1);
+
+Console.WriteLine($"Sum of 5 and 1 is {s}");
+
+Func<string,int> getLength = s => s.Length;
+
+Console.WriteLine(getLength("Raj Kumar"));
+
+// 🔗 Chaining & Combining
+// Action and Func support multicast via +=:
+
+Action log = () => Console.WriteLine("Log A");
+
+log += () => Console.WriteLine("Log B");
+
+log();
+
+Func<int,int> sq = (s) => s*s;
+
+Func<int,int> cube = (s) => s*s*s;
+
+sq += cube;
+
+Console.WriteLine(sq(10));
+
+
+void Execute(Action act)
+{
+    Console.WriteLine("Start");
+    act();
+    Console.WriteLine("End");
+
+}
+
+
+Execute(() => Console.WriteLine("Pass A"));
+
+
+T Transformer<T>(T value,Func<T,T> transformer)
+{
+    return transformer(value);
+}
+
+var sq1 = Transformer(4, x => x*x );
+var cube1 = Transformer(4.12, x => x*x*x );
+
+Console.WriteLine($"sq1 : {sq1} cube1 : {cube1}");

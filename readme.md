@@ -7,3 +7,10 @@ Concept : 22/03/2026
 - Func | Must return something
 - Predicate | boolean check
 - Action and Func support multicast via +=: 
+
+```
+T Transformer<T>(T value,Func<T,T> transformer)
+{
+    return transformer(value);
+}
+```
