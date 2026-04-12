@@ -42,13 +42,7 @@ Action<List<Enemy>> PrintEnemies = (enemies) =>
     }
 };
 
-Action<List<string?>> PrintNames = (enemies) =>
-{
-    foreach(var enemy in enemies)
-    {
-        Console.WriteLine($"Enemy: {enemy.Name}, HP: {enemy.Health}, Damage: {enemy.Damage}");
-    }
-};
+
 
 var afp = new AFP();
 List<Enemy> enemies = afp.GetAllEnemies (5);
@@ -62,5 +56,4 @@ var dangerous = enemies
     .Select(e => e.Name)                 // Func — transform
     .ToList();
 
-PrintEnemies(dangerous);
 
