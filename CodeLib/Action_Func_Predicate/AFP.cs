@@ -1,4 +1,6 @@
 
+using Player;
+
 public class AFP
 {
     // Action                    // () → void
@@ -69,5 +71,40 @@ T Transformer<T>(T value,Func<T,T> transformer)
     return transformer(value);
 }
 
+Func<Person , int> getAge = p => 
+p.DOB.Year < DateTime.Now.Year  
+? DateTime.Now.Year - p.DOB.Year : 0 ;
+
+Func<DamageContext,int> calculateDamage = ctx => ctx.IsCritical ? ctx.BaseDamage * ctx.Multiplier * 2
+                   : ctx.BaseDamage * ctx.Multiplier;
+
+
+public Func<int,List<Enemy>> GetAllEnemies = (count) =>
+{
+    List<Enemy> enemies = new List<Enemy>();
+    while(count > 0)
+    {
+        var enemy =  new Enemy();
+        enemy.Damage = count * 100;
+        enemy.Health = count * 300;
+        enemy.Name = "Enemy "+count;
+        enemies.Add(enemy);
+    }
+    return enemies;
+};    
+
+
+
+
+
+
+public  class Enemy 
+{
+        public int Damage { get; set; }
+        public int Health { get; set; }
+
+        public string? Name {get;set;}
+
+}  
 
 }
